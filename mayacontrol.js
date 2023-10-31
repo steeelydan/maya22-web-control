@@ -101,8 +101,16 @@ app.post('/setting', (req, res) => {
 
     switch (setting) {
         case 'inputChannel': {
-            console.log(setting, value);
             output = executeMayaCommand(`-c ${value}`);
+            break;
+        }
+        case 'monitor': {
+            if (!!value) {
+                output = executeMayaCommand(`-M`);
+            } else {
+                output = executeMayaCommand(`-m`);
+            }
+
             break;
         }
         case 'inputVolumeL': {

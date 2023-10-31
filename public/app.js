@@ -10,7 +10,15 @@ const setElementValue = (id, value) => {
     const el = document.getElementById(id);
     const valueEl = document.getElementById(`${id}-value`);
 
-    el.value = value;
+    if (el.getAttribute('type') === 'checkbox') {
+        if (!!value) {
+            el.setAttribute('checked', 'checked');
+        } else {
+            el.removeAttribute('checked');
+        }
+    } else {
+        el.value = value;
+    }
 
     if (valueEl) {
         valueEl.innerText = value;
@@ -56,6 +64,14 @@ const registerSelectbox = (id, settingsFunction) => {
     });
 };
 
+const registerCheckbox = (id, settingsFunction) => {
+    const el = document.getElementById(id);
+
+    el.addEventListener('change', (event) => {
+        mayaSettingsRequest(settingsFunction(!!event.target.checked));
+    });
+};
+
 const getSavedSettings = async () => {
     const settingsResponse = await fetch('/settings');
 
@@ -69,6 +85,7 @@ const getSavedSettings = async () => {
                     'inputVolumeR',
                     'outputVolume',
                     'inputChannel',
+                    'monitor',
                 ].includes(key)
             ) {
                 setElementValue(key, value);
@@ -100,6 +117,12 @@ window.addEventListener('DOMContentLoaded', async (event) => {
         setting: 'inputChannel',
         value: value,
     }));
+
+    registerCheckbox('monitor', (value) => ({
+        setting: 'monitor',
+        value: !!value,
+    }));
+
     registerRangeInput('inputVolumeL', (value) => ({
         setting: 'inputVolumeL',
         value: parseInt(value),

@@ -6,12 +6,23 @@ select {
     margin-right: 4px;
 }
 
+input[type='checkbox'] {
+    padding: 0;
+    text-align: left;
+    margin-bottom: 6px;
+}
+
+label {
+    user-select: none;
+}
+
 .controls-group {
     display: flex;
     flex-direction: column;
 }
 
 .control {
+    margin: 4px 0 4px 0;
     display: flex;
 }
 
