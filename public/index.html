@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎚️</text></svg>"
+        />
+        <link rel="stylesheet" href="style.css" />
+        <title>Maya 22 Control</title>
+    </head>
+    <body>
+        <div class="controls-group">
+            <div class="control">
+                <select id="inputChannel">
+                    <option value="mic-hiz">Mic + HiZ</option>
+                    <option value="mic">Mic</option>
+                    <option value="hiz">HiZ</option>
+                    <option value="line">Line</option>
+                    <option value="mute">Mute</option>
+                </select>
+                <label for="inputChannel">Input Channel</label>
+            </div>
+            <div class="control">
+                <input
+                    id="inputVolumeL"
+                    type="range"
+                    min="0"
+                    max="127"
+                    value="0"
+                />
+                <div id="inputVolumeL-value" class="value">0</div>
+                <label for="inputVolumeL">Ch. 1 Input Volume</label>
+            </div>
+            <div class="control">
+                <input
+                    id="inputVolumeR"
+                    type="range"
+                    min="0"
+                    max="127"
+                    value="0"
+                />
+                <div id="inputVolumeR-value" class="value">0</div>
+                <label for="inputVolumeR">Ch. 2 Input Volume</label>
+            </div>
+            <div class="control">
+                <input
+                    id="outputVolume"
+                    type="range"
+                    min="0"
+                    max="145"
+                    value="0"
+                />
+                <div id="outputVolume-value" class="value">0</div>
+                <label for="outputVolume">Output Volume</label>
+            </div>
+            <div class="control">
+                <button id="reset">Reset Device</button>
+            </div>
+        </div>
+        <div id="debug">Debug<br /></div>
+        <script src="app.js"></script>
+    </body>
+</html>

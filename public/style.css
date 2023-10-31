@@ -1,0 +1,46 @@
+body {
+    font-family: sans-serif;
+}
+
+select {
+    margin-right: 4px;
+}
+
+.controls-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.control {
+    display: flex;
+}
+
+.control input {
+    max-width: 150px;
+    width: 100%;
+}
+
+.control .value {
+    width: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+#debug {
+    height: 200px;
+    max-width: 700px;
+    overflow-y: scroll;
+    font-size: small;
+    font-family: monospace;
+    padding: 6px;
+    border: 1px solid lightgray;
+}
+
+#reset {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+#inputChannel {
+    margin-bottom: 8px;
+}
