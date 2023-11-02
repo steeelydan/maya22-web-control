@@ -4,7 +4,8 @@
     "description": "Control ESI Maya 22",
     "main": "mayacontrol.js",
     "scripts": {
-        "start": "node mayacontrol.js"
+        "start": "node mayacontrol.js",
+        "network": "node mayacontrol.js --network"
     },
     "author": "",
     "license": "ISC",

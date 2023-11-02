@@ -13,4 +13,5 @@ Simple, browser-based GUI to control the ancient ESI Maya 22 USB audio interface
 -   Create a file containing the path to the control app executable named `.clipath`
     -   Example content: `/usr/local/bin/maya22-control`
 -   `npm start`
+    -   You can expose the server to your network by running `npm run network`
 -   Now you can open the web GUI at http://localhost:9999

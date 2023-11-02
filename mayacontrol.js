@@ -2,6 +2,8 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const express = require('express');
 
+const LISTEN_ON = process.argv[2] === '--network' ? '0.0.0.0' : '127.0.0.1';
+
 const DEFAULT_SETTINGS = {
     headphones: true,
     inputChannel: 'mic_hiz',
@@ -155,6 +157,6 @@ app.post('/reset', (req, res) => {
     res.json({ output: 'Reset successfully.' });
 });
 
-app.listen('9999', () => {
+app.listen('9999', LISTEN_ON, () => {
     console.log('Open http://localhost:9999\n');
 });
