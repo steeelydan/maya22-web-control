@@ -19,9 +19,11 @@ const executeMayaCommand = (command) => {
     try {
         const output = execSync(`~/apps/maya22-control ${command}`);
 
-        console.log(output.toString().trim());
+        const trimmedOutput = output.toString().trim();
 
-        return output.toString().trim();
+        console.log(trimmedOutput);
+
+        return trimmedOutput;
     } catch (e) {
         return `Error:\n${e.message}`;
     }
@@ -32,10 +34,15 @@ const saveData = () => {
 };
 
 const reset = () => {
-    executeMayaCommand('-d');
+    const output = executeMayaCommand('-d');
+
     settings = { ...DEFAULT_SETTINGS };
+
     saveData();
+
     console.log('\nDefault values loaded and submitted to device\n');
+
+    return output;
 };
 
 // Enumerate devices at startup
@@ -152,9 +159,9 @@ app.post('/setting', (req, res) => {
 });
 
 app.post('/reset', (req, res) => {
-    reset();
+    const output = reset();
 
-    res.json({ output: 'Reset successfully.' });
+    res.json({ output: output });
 });
 
 app.listen('9999', LISTEN_ON, () => {
