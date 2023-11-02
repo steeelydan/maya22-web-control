@@ -50,9 +50,9 @@ console.log('Device:');
 const deviceEnumerationResult = executeMayaCommand('-e');
 console.log();
 
-if (deviceEnumerationResult.includes('is empty')) {
-    throw new Error('Maya 22 interface seems to be disconnected');
-}
+// if (deviceEnumerationResult.includes('is empty')) {
+//     throw new Error('Maya 22 interface seems to be disconnected');
+// }
 
 if (!fs.existsSync('.clipath')) {
     throw new Error(
@@ -148,6 +148,10 @@ app.post('/setting', (req, res) => {
         }
         default: {
             console.error(`Setting does not exist: ${setting}`);
+
+            return res
+                .status(400)
+                .json({ output: `Setting does not exist: ${setting}` });
         }
     }
 
