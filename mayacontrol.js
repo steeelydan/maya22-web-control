@@ -50,9 +50,9 @@ console.log('Device:');
 const deviceEnumerationResult = executeMayaCommand('-e');
 console.log();
 
-// if (deviceEnumerationResult.includes('is empty')) {
-//     throw new Error('Maya 22 interface seems to be disconnected');
-// }
+if (deviceEnumerationResult.includes('is empty')) {
+    throw new Error('Maya 22 interface seems to be disconnected');
+}
 
 if (!fs.existsSync('.clipath')) {
     throw new Error(
