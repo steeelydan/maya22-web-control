@@ -4,7 +4,7 @@ const express = require('express');
 
 const DEFAULT_SETTINGS = {
     headphones: true,
-    inputChannel: 'mic-hiz',
+    inputChannel: 'mic_hiz',
     monitor: false,
     inputVolumeL: 86,
     inputVolumeR: 86,
@@ -83,6 +83,18 @@ app.get('/settings', (req, res) => {
 app.post('/setting', (req, res) => {
     const setting = req.body.setting;
     const value = req.body.value;
+
+    if (
+        !(
+            value === true ||
+            value === false ||
+            ['mic', 'hiz', 'line', 'mic_hiz', 'mute'].includes(value) ||
+            /[0-9]/.test(value)
+        ) ||
+        !/[a-zA-Z]/.test(setting)
+    ) {
+        return res.status(400).send();
+    }
 
     let output;
 
