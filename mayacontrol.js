@@ -98,7 +98,7 @@ app.post('/setting', (req, res) => {
             value === true ||
             value === false ||
             ['mic', 'hiz', 'line', 'mic_hiz', 'mute'].includes(value) ||
-            /[0-9]/.test(value)
+            Number.isInteger(value)
         ) ||
         !/[a-zA-Z]/.test(setting)
     ) {
