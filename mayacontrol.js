@@ -100,7 +100,7 @@ app.post('/setting', (req, res) => {
             ['mic', 'hiz', 'line', 'mic_hiz', 'mute'].includes(value) ||
             Number.isInteger(value)
         ) ||
-        !/[a-zA-Z]/.test(setting)
+        !/^[a-zA-Z]+$/.test(setting)
     ) {
         return res.status(400).send();
     }
