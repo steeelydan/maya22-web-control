@@ -13,9 +13,21 @@ const DEFAULT_SETTINGS = {
 
 let settings = { ...DEFAULT_SETTINGS };
 
+if (!fs.existsSync('.clipath')) {
+    throw new Error('.clipath containing the path to the maya22-control executable not found');
+}
+
+const cliPath = fs.readFileSync('.clipath', 'utf-8');
+
+if (!cliPath) {
+    throw new Error('.clipath must not be empty');
+}
+
+console.log(`Path to the maya22-control executable: ${cliPath}\n`);
+
 const executeMayaCommand = (command) => {
     try {
-        const output = execSync(`~/apps/maya22-control ${command}`);
+        const output = execSync(`${cliPath} ${command}`);
 
         const trimmedOutput = output.toString().trim();
 
@@ -51,18 +63,6 @@ console.log();
 if (deviceEnumerationResult.includes('is empty')) {
     throw new Error('Maya 22 interface seems to be disconnected');
 }
-
-if (!fs.existsSync('.clipath')) {
-    throw new Error('.clipath containing the path to the maya22-control executable not found');
-}
-
-const cliPath = fs.readFileSync('.clipath', 'utf-8');
-
-if (!cliPath) {
-    throw new Error('.clipath must not be empty');
-}
-
-console.log(`Path to the maya22-control executable: ${cliPath}\n`);
 
 if (!fs.existsSync(cliPath)) {
     throw new Error('maya22-control executable not found.');
