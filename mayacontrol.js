@@ -2,15 +2,13 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const express = require('express');
 
-const LISTEN_ON = process.argv[2] === '--network' ? '0.0.0.0' : '127.0.0.1';
-
 const DEFAULT_SETTINGS = {
     headphones: true,
     inputChannel: 'mic_hiz',
     monitor: false,
     inputVolumeL: 86,
     inputVolumeR: 86,
-    outputVolume: 145,
+    outputVolume: 145
 };
 
 let settings = { ...DEFAULT_SETTINGS };
@@ -55,9 +53,7 @@ if (deviceEnumerationResult.includes('is empty')) {
 }
 
 if (!fs.existsSync('.clipath')) {
-    throw new Error(
-        '.clipath containing the path to the maya22-control executable not found'
-    );
+    throw new Error('.clipath containing the path to the maya22-control executable not found');
 }
 
 const cliPath = fs.readFileSync('.clipath', 'utf-8');
@@ -149,9 +145,7 @@ app.post('/setting', (req, res) => {
         default: {
             console.error(`Setting does not exist: ${setting}`);
 
-            return res
-                .status(400)
-                .json({ output: `Setting does not exist: ${setting}` });
+            return res.status(400).json({ output: `Setting does not exist: ${setting}` });
         }
     }
 
@@ -168,6 +162,6 @@ app.post('/reset', (req, res) => {
     res.json({ output: output });
 });
 
-app.listen('9999', LISTEN_ON, () => {
+app.listen('9999', '127.0.0.1', () => {
     console.log('Open http://localhost:9999\n');
 });
